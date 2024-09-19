@@ -17,9 +17,9 @@ jobs:
       matrix:
         include:
           - image: microsoft/defender-for-cloud/attacksimulation/victim
-            dockerfile: Images\victim\Dockerfile
+            dockerfile: Images/victim/Dockerfile
           - image: microsoft/defender-for-cloud/attacksimulation/attacker
-            dockerfile: Images\attacker\Dockerfile
+            dockerfile: Images/attacker/Dockerfile
     permissions:
       contents: read
       packages: write
