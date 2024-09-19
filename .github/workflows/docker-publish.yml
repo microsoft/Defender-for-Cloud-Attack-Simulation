@@ -17,9 +17,9 @@ jobs:
       matrix:
         include:
           - image: microsoft/defender-for-cloud/attacksimulation/victim
-            dockerfile: Images/victim/Dockerfile
+            dockerpath: Images/victim
           - image: microsoft/defender-for-cloud/attacksimulation/attacker
-            dockerfile: Images/attacker/Dockerfile
+            dockerpath: Images/attacker
     permissions:
       contents: read
       packages: write
@@ -46,8 +46,8 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ${{ matrix.dockerfile }}
+          context: ${{ matrix.dockerpath }}
+          file: ${{ matrix.dockerpath }}/Dockerfile
           push: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
