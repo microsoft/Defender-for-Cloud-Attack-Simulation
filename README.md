@@ -1,4 +1,4 @@
-# Project
+# Defender for Cloud Attack Simulation
 
 This tool simulates real attack scenarios using simulate techniques that are used in real world attacks such as: secret reconnaissance, lateral movement, Secret gathering, Crypto-mining activity and Webshell invocation. It’s important to note that no actual malicious activity or binaries are running in the environment. All the files are benign and cause no harm to the environment.
 
