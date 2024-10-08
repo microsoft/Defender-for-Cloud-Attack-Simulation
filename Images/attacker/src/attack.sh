@@ -19,13 +19,13 @@ case $SCENARIO in
     crypto)
         envsubst '${NAME}' < crypto.sh > attack_script.sh
         attack_script=attack_script.sh
-        python3 -m http.server 80 &
+        python3 -m http.server 80 > /dev/null 2>&1 &
         sleep 2
         ;;
     all)
         envsubst '${NAME}' < all-scenarios.sh > attack_script.sh
         attack_script=attack_script.sh
-        python3 -m http.server 80 &
+        python3 -m http.server 80 > /dev/null 2>&1 &
         sleep 2
         ;;
     webshell)
