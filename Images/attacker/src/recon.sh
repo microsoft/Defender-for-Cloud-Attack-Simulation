@@ -1,4 +1,8 @@
-#!/bin/sh
+#!/bin/bash
+
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 echo "--- Reconnaissance ---"
 echo "Checking read permissions for other pods via SelfSubjectAccessReview api request"
 kubetoken=`cat /var/run/secrets/kubernetes.io/serviceaccount/token`
