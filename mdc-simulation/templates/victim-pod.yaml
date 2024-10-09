@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mdc-simulation-victim
+  namespace: {{ .Values.env.name }}
+  labels:
+    name: mdc-simulation-victim
+spec:
+  hostname: victim
+  subdomain: mdc-simulation-victim
+  serviceAccountName: mdc-simulation-victim
+  containers:
+  - name: mdc-simulation-victim
+    image: ghcr.io/microsoft/defender-for-cloud/attacksimulation/victim:latest

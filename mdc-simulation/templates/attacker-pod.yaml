@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mdc-simulation-attacker
+  namespace: {{ .Values.env.name }}
+  labels:
+    name: mdc-simulation-attacker
+spec:
+  hostname: attacker
+  subdomain: mdc-simulation-attacker
+  containers:
+  - name: mdc-simulation-attacker
+    image: ghcr.io/microsoft/defender-for-cloud/attacksimulation/attacker:latest
+    env:
+    - name: SCENARIO
+      value: {{ .Values.scenario }}
+  restartPolicy: Never
