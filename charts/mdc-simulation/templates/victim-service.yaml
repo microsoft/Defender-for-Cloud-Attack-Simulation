@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mdc-simulation-victim
+  namespace: {{ .Values.env.name }}
+spec:
+  selector:
+    name: mdc-simulation-victim
+  clusterIP: None

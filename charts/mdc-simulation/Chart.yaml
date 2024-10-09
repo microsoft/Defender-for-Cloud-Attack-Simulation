@@ -1,0 +1,8 @@
+apiVersion: v2
+name: mdc-simulation
+description: alert simulation tool for Defender for Cloud
+
+type: application
+
+version: 0.1.0
+

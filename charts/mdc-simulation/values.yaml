@@ -1,0 +1,13 @@
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+
+env:
+  name: mdc-simulation
+
+scenario: all
