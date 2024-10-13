@@ -4,6 +4,9 @@ on:
   push:
     branches: 
       - main
+  pull_request:
+    branches: 
+      - main
   # supports manualy running a workflow
   workflow_dispatch:
 
@@ -51,7 +54,7 @@ jobs:
         with:
           context: ${{ matrix.dockerpath }}
           file: ${{ matrix.dockerpath }}/Dockerfile
-          push: true
+          push: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
       
