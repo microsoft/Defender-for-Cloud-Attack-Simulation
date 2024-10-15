@@ -5,4 +5,5 @@ WORKDIR /simulation
 RUN cp /bin/true xmrig
 RUN chmod +x attack.sh
 ENV SCENARIO=all
+COPY /NOTICE /NOTICE
 CMD ["./attack.sh"]
