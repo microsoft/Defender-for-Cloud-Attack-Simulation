@@ -32,6 +32,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: copy Notice file
+        run: cp /NOTICE ${{ matrix.dockerpath }}/NOTICE
+
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
