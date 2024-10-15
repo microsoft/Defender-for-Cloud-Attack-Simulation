@@ -7,4 +7,5 @@ COPY cfg/nginx.conf /etc/nginx/nginx.conf
 COPY cfg/web.conf /etc/php-fpm.d/web.conf
 RUN mkdir /var/lib/nginx
 RUN chown nginx:nginx /var/www/html
+COPY /NOTICE /NOTICE
 CMD ["sh", "-c", "php-fpm && nginx -g 'daemon off;'"]
