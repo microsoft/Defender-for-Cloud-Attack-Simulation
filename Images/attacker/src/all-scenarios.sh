@@ -35,7 +35,7 @@ else
     identity="/subscriptions/$subId/resourcegroups/$rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/$cluster-agentpool"
     imds_addr="http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://management.azure.com"
     imds_res=$(curl -sf -H Metadata:true "$imds_addr" ||curl -sf -H Metadata:true "$imds_addr&msi_res_id=$identity")
-    token=$(echo $imds_res | grep -Po '"Access_token":"\K.*?(?=")')
+    token=$(echo $imds_res | grep -Po '"access_token":"\K.*?(?=")')
 fi
 test $token && echo "$cloud token: $token" | head -c 30 && echo "..." || echo "No token found"
 echo " "
