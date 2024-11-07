@@ -16,7 +16,7 @@ echo " "
 kube_token_file="/var/run/secrets/kubernetes.io/serviceaccount/token"
 if (test -f $kube_token_file); then
     kube_token=$(cat $kube_token_file | head -c 30 && echo "...")
-    echo "Found Kubernetes service account in $kube_token_file: kube_token"
+    echo "Found Kubernetes service account in $kube_token_file: $kube_token"
 else
     echo "Kubernetes service account token not found"
 fi
