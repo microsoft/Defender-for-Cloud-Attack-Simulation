@@ -38,15 +38,18 @@ def run_scenario(scenario):
     # Install or update the helm chart
     print("Helm - creating simulation objects in namespace mdc-simulation...")
     try:
+        existing_pod=subprocess.run(["kubectl", "get", "pod", ATTACKER, "-n", NAMESPACE], capture_output=True, text=True)
+        if existing_pod.stdout:
+            subprocess.run(["kubectl", "delete", "pod", ATTACKER, "-n", NAMESPACE], check=True, capture_output=True)
         subprocess.run(["helm", "upgrade", "--install",  HELM_RELEASE, HELM_CHART,
                         "--set", f"env.name={NAMESPACE}", "--set", f"scenario={scenario}"],
                         check=True, capture_output=True)
-    except subprocess.CalledProcessError as e:
-        print("Failed to create Helm chart. Exiting")
-        raise subprocess.CalledProcessError(returncode=e.returncode, cmd=e.cmd)
     except FileNotFoundError:
         print("Can't find Helm. Exiting")
         raise FileNotFoundError
+    except subprocess.CalledProcessError as e:
+        print("Failed to create Helm chart. Exiting")
+        raise subprocess.CalledProcessError(returncode=e.returncode, cmd=e.cmd)
 
     print("Creating resources...")
     attacker_status = subprocess.run(["kubectl", "get", "pod", ATTACKER, "-n", NAMESPACE, "-o",
@@ -99,6 +102,8 @@ def start_simulation():
 
     try:
         run_scenario(SCENARIOS[choise-1])
+    except FileNotFoundError:
+        return
     except Exception:
         release_status = subprocess.run(["helm", "status", HELM_RELEASE], capture_output=True)
         if release_status.returncode == 0:
