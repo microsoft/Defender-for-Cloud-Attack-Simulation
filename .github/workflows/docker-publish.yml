@@ -35,6 +35,13 @@ jobs:
       - name: copy Notice file
         run: cp NOTICE ${{ matrix.dockerpath }}/NOTICE
 
+      # configures QEMU emulation for the Arm portion of our multi-platform Docker image build. 
+      # This is required for multi-platform Docker image builds in GitHub Actions, as the hosted runners are Intel machines.
+      - uses: docker/setup-qemu-action@v3
+
+      # configures buildx for the workflow. It's required for multi-platform Docker image builds in GitHub Actions
+      - uses: docker/setup-buildx-action@v3
+
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
@@ -60,6 +67,7 @@ jobs:
           push: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64,linux/arm64
       
   helm:
     runs-on: ubuntu-latest
