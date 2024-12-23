@@ -1,6 +1,71 @@
 # Defender for Cloud Attack Simulation
 
-This tool simulates real attack scenarios using simulate techniques that are used in real world attacks such as: secret reconnaissance, lateral movement, Secret gathering, Crypto-mining activity and Webshell invocation. It’s important to note that no actual malicious activity or binaries are running in the environment. All the files are benign and cause no harm to the environment.
+This tool simulates attack scenarios commonly used in real-world attacks, such as:
+
+- Secret reconnaissance
+- Lateral movement
+- Secrets gathering
+- Crypto-mining activity
+- Webshell invocation
+
+**Note:** This tool does not perform any actual malicious activity or execute harmful binaries. All files and activities are benign and designed to cause no harm to your environment.
+
+## Features
+- Simulates various attack scenarios in Kubernetes environments.
+- Generates alerts for scenarios to validate Defender for Containers' detection capabilities.
+- Provides detailed simulation options through a Python-based CLI.
+
+## Installation
+### Prerequisites
+Before using the simulation tool, ensure you have the following:
+
+1. A user with admin permissions over the target Kubernetes cluster.
+2. Defender for Containers enabled and the Defender sensor installed in the cluster. You can verify the sensor installation by running:
+
+   ```bash
+   kubectl get ds microsoft-defender-collector-ds -n kube-system
+   ```
+
+3. Helm client installed on your local machine.
+4. Python version 3.7 or above installed.
+5. The kubeconfig file pointing to your target cluster. For Azure Kubernetes Service (AKS), you can set it up using:
+
+   ```bash
+   az aks get-credentials --name [cluster-name] --resource-group [resource-group]
+   ```
+
+### Download the Tool
+Download the simulation tool script using:
+
+```bash
+curl -O https://raw.githubusercontent.com/microsoft/Defender-for-Cloud-Attack-Simulation/refs/heads/main/simulation.py
+```
+
+## Usage
+Run the simulation script to initiate attack simulations:
+
+```bash
+python simulation.py
+```
+
+You can choose specific attack scenarios or simulate all scenarios at once. The available attack scenarios and their expected alerts are:
+
+| **Scenario**          | **Expected Alerts**                                                                 |
+|------------------------|-------------------------------------------------------------------------------------|
+| Reconnaissance         | Possible Web Shell activity detected, Suspicious Kubernetes service account operation detected, Network scanning tool detected |
+| Lateral Movement       | Possible Web Shell activity detected, Access to cloud metadata service detected    |
+| Secrets Gathering      | Possible Web Shell activity detected, Sensitive files access detected, Possible secret reconnaissance detected |
+| Crypto Mining          | Possible Web Shell activity detected, Kubernetes CPU optimization detected, Command within a container accessed `ld.so.preload`, Possible Crypto miners download detected, A drift binary detected executing in the container |
+| Web Shell              | Possible Web Shell activity detected                                               |
+
+**Note:** While some alerts are triggered in near real-time, others may take up to an hour.
+
+### Best Practices
+- Run the simulation tool on a dedicated cluster without production workloads to avoid unnecessary alerts in production environments.
+
+---
+
+For detailed documentation and additional information, visit [Defender for Containers Simulation Tool Documentation](https://learn.microsoft.com/en-us/azure/defender-for-cloud/alerts-containers#kubernetes-alerts-simulation-tool).
 
 ## Contributing
 
