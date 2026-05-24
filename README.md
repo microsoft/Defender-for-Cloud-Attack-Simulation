@@ -21,12 +21,7 @@ This tool simulates attack scenarios commonly used in real-world attacks, such a
 Before using the simulation tool, ensure you have the following:
 
 1. A user with admin permissions over the target Kubernetes cluster.
-2. Defender for Containers enabled and the Defender sensor installed in the cluster. You can verify the sensor installation by running:
-
-   ```bash
-   kubectl get ds microsoft-defender-collector-ds -n kube-system
-   ```
-
+2. Defender for Containers enabled and the Defender sensor installed on the target cluster. For verification steps, see [Verify Defender for Containers deployment](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-verify-deployment#verify-defender-sensor-deployment).
 3. Helm client installed on your local machine.
 4. Python version 3.7 or above installed.
 5. The kubeconfig file pointing to your target cluster. For Azure Kubernetes Service (AKS), you can set it up using:
