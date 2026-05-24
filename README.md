@@ -7,6 +7,7 @@ This tool simulates attack scenarios commonly used in real-world attacks, such a
 - Secrets gathering
 - Crypto-mining activity
 - Webshell invocation
+- Threat intelligence domain communication
 
 **Note:** This tool does not perform any actual malicious activity or execute harmful binaries. All files and activities are benign and designed to cause no harm to your environment.
 
@@ -52,11 +53,12 @@ You can choose specific attack scenarios or simulate all scenarios at once. The 
 
 | **Scenario**          | **Expected Alerts**                                                                 |
 |------------------------|-------------------------------------------------------------------------------------|
-| Reconnaissance         | Possible Web Shell activity detected, Suspicious Kubernetes service account operation detected, Network scanning tool detected |
+| Reconnaissance         | Possible Web Shell activity detected, Suspicious Kubernetes service account operation detected, Network scanning tool detected, Suspicious access to workload identity token or service account token detected |
 | Lateral Movement       | Possible Web Shell activity detected, Access to cloud metadata service detected    |
 | Secrets Gathering      | Possible Web Shell activity detected, Sensitive files access detected, Possible secret reconnaissance detected |
-| Crypto Mining          | Possible Web Shell activity detected, Kubernetes CPU optimization detected, Command within a container accessed `ld.so.preload`, Possible Crypto miners download detected, A drift binary detected executing in the container |
+| Crypto Mining          | Possible Web Shell activity detected, Kubernetes CPU optimization detected, Command within a container accessed `ld.so.preload`, Possible Cryptocoinminer download detected, A drift binary detected executing in the container, Digital currency mining related behavior detected |
 | Web Shell              | Possible Web Shell activity detected                                               |
+| TI Domain              | Communication with test domain identified by threat intelligence                   |
 
 **Note:** While some alerts are triggered in near real-time, others may take up to an hour.
 

