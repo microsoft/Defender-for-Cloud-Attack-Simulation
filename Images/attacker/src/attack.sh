@@ -19,6 +19,9 @@ case $SCENARIO in
     ti-domain)
         attack_script=ti-domain.sh
         ;;
+    anti-malware)
+        attack_script=anti-malware.sh
+        ;;
     crypto)
         attack_script=crypto.sh
         python3 -m http.server 80 > /dev/null 2>&1 &

