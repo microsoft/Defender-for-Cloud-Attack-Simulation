@@ -8,6 +8,7 @@ This tool simulates attack scenarios commonly used in real-world attacks, such a
 - Crypto-mining activity
 - Webshell invocation
 - Threat intelligence domain communication
+- Anti-malware detection (malicious test file execution)
 
 **Note:** This tool does not perform any actual malicious activity or execute harmful binaries. All files and activities are benign and designed to cause no harm to your environment.
 
@@ -54,8 +55,11 @@ You can choose specific attack scenarios or simulate all scenarios at once. The 
 | Crypto Mining          | Possible Web Shell activity detected, Kubernetes CPU optimization detected, Command within a container accessed `ld.so.preload`, Possible Cryptocoinminer download detected, A drift binary detected executing in the container, Digital currency mining related behavior detected |
 | Web Shell              | Possible Web Shell activity detected                                               |
 | TI Domain              | Communication with test domain identified by threat intelligence                   |
+| Anti-Malware           | Microsoft Defender for Cloud Kubernetes Malware execution detected                 |
 
 **Note:** While some alerts are triggered in near real-time, others may take up to an hour.
+
+**Note:** To enable binary drift detection, see [Binary drift detection and blocking](https://learn.microsoft.com/en-us/azure/defender-for-cloud/binary-drift-detection). To enable anti-malware detection, see [Container runtime antimalware detection and blocking](https://learn.microsoft.com/en-us/azure/defender-for-cloud/anti-malware).
 
 ### Best Practices
 - Run the simulation tool on a dedicated cluster without production workloads to avoid unnecessary alerts in production environments.

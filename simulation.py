@@ -18,10 +18,11 @@ Available scenarios:
     4. Cryptomining - Run a cryptominer on the victim pod.
     5. Webshell - Exploit a webshell on the victim pod (NOTE: the webshell is used in all scenarios).
     6. TI Domain - Simulate communication with a domain flagged by threat intelligence.
-    7. All - Run all scenarios.
+    7. Anti-Malware - Drop and execute a malicious test file (EICAR) on the victim pod.
+    8. All - Run all scenarios.
 
 """
-SCENARIOS = ["recon", "lateral-mov", "secrets", "crypto", "webshell", "ti-domain", "all"]
+SCENARIOS = ["recon", "lateral-mov", "secrets", "crypto", "webshell", "ti-domain", "anti-malware", "all"]
 HELM_CHART = "oci://ghcr.io/microsoft/defender-for-cloud/attacksimulation/mdc-simulation"
 HELM_RELEASE = "mdc-simulation"
 NAMESPACE = "mdc-simulation"
