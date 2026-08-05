@@ -1,0 +1,64 @@
+{
+  "registrations": [
+    {
+      "component": {
+        "type": "other",
+        "other": {
+          "name": "cbl-mariner-base-core",
+          "version": "2.0",
+          "downloadUrl": "https://github.com/microsoft/CBL-Mariner"
+        }
+      }
+    },
+    {
+      "component": {
+        "type": "other",
+        "other": {
+          "name": "python3",
+          "version": "3.9.19",
+          "downloadUrl": "https://www.python.org/"
+        }
+      }
+    },
+    {
+      "component": {
+        "type": "other",
+        "other": {
+          "name": "curl",
+          "version": "8.8.0",
+          "downloadUrl": "https://curl.se/"
+        }
+      }
+    },
+    {
+      "component": {
+        "type": "other",
+        "other": {
+          "name": "nginx",
+          "version": "1.22.1",
+          "downloadUrl": "https://nginx.org/"
+        }
+      }
+    },
+    {
+      "component": {
+        "type": "other",
+        "other": {
+          "name": "php",
+          "version": "8.1.29",
+          "downloadUrl": "https://www.php.net/"
+        }
+      }
+    },
+    {
+      "component": {
+        "type": "other",
+        "other": {
+          "name": "nmap",
+          "version": "7.93",
+          "downloadUrl": "https://nmap.org/"
+        }
+      }
+    }
+  ]
+}
