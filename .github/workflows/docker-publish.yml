@@ -92,9 +92,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Package and push Helm chart
+      - name: Package Helm chart
         run: |
           helm package ./charts/mdc-simulation -d charts
+
+      - name: Push Helm chart
+        if: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
+        run: |
           chart_version=$(helm show chart ./charts/mdc-simulation | grep '^version:' | awk '{print $2}')
           helm push ./charts/mdc-simulation-$chart_version.tgz oci://${{ env.REGISTRY }}/microsoft/defender-for-cloud/attacksimulation
           
