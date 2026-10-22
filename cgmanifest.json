@@ -14,6 +14,16 @@
       "component": {
         "type": "other",
         "other": {
+          "name": "azurelinux-base-core",
+          "version": "3.0",
+          "downloadUrl": "https://github.com/microsoft/azurelinux"
+        }
+      }
+    },
+    {
+      "component": {
+        "type": "other",
+        "other": {
           "name": "python3",
           "version": "3.9.19",
           "downloadUrl": "https://www.python.org/"
@@ -34,8 +44,18 @@
       "component": {
         "type": "other",
         "other": {
+          "name": "curl",
+          "version": "8.11.1",
+          "downloadUrl": "https://curl.se/"
+        }
+      }
+    },
+    {
+      "component": {
+        "type": "other",
+        "other": {
           "name": "nginx",
-          "version": "1.22.1",
+          "version": "1.30.6",
           "downloadUrl": "https://nginx.org/"
         }
       }
@@ -45,7 +65,7 @@
         "type": "other",
         "other": {
           "name": "php",
-          "version": "8.1.29",
+          "version": "8.3.35-2.azl3",
           "downloadUrl": "https://www.php.net/"
         }
       }
@@ -55,7 +75,7 @@
         "type": "other",
         "other": {
           "name": "nmap",
-          "version": "7.93",
+          "version": "7.95",
           "downloadUrl": "https://nmap.org/"
         }
       }
